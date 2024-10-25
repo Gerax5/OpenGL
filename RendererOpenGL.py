@@ -15,16 +15,24 @@ clock = pygame.time.Clock()
 
 rend = Renderer(screen)
 
-rend.SetShaders(vertex_shader, fragment_shader)
+
 
 # rend.scene.append(Buffer(triangle))
 faceModel = Model("OBJ/model.obj")
 faceModel.AddTexture("texture/model.bmp")
-faceModel.rotation.y = 180
+faceModel.translation.z = -5
+faceModel.scale.x = 2
+faceModel.scale.y = 2
+faceModel.scale.z = 2
+
 
 rend.scene.append(faceModel)
 
 isRunning = True
+
+vShader = vertex_shader
+fShader = fragment_shader
+rend.SetShaders(vShader, fShader)
 
 while isRunning:
 
@@ -43,12 +51,53 @@ while isRunning:
                 rend.FilledMode()
             elif event.key == pygame.K_2:
                 rend.WireframeMode()
+            elif event.key == pygame.K_3:
+                vShader = vertex_shader
+                rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_4:
+                vShader = fat_shader
+                rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_5:
+                vShader = water_shader
+                rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_6:
+                fShader = fragment_shader
+                rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_7:
+                fShader = negative_shader
+                rend.SetShaders(vShader, fShader)
+
 
     if keys[K_LEFT]:
-        faceModel.rotation.y -= 10 * deltaTime
+        rend.pointLight.x -= 1
 
     if keys[K_RIGHT]:
-        faceModel.rotation.y += 10 * deltaTime
+        rend.pointLight.x += 1
+
+    if keys[K_UP]:
+        rend.pointLight.z -= 1
+
+    if keys[K_DOWN]:
+        rend.pointLight.z += 1
+    
+    if keys[K_PAGEUP]:
+        rend.pointLight.y += 1
+
+    if keys[K_PAGEDOWN]:
+        rend.pointLight.y -= 1
+
+    if keys[K_a]:
+        rend.camera.position.x -= 1 * deltaTime
+
+    if keys[K_d]:
+        rend.camera.position.x += 1 * deltaTime
+
+    if keys[K_s]:
+        rend.camera.position.y -= 1 * deltaTime
+
+    if keys[K_w]:
+        rend.camera.position.y += 1 * deltaTime
+
 
 
     rend.time += deltaTime

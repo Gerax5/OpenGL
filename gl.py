@@ -5,6 +5,8 @@ from OpenGL.GL import *
 
 from OpenGL.GL.shaders import compileProgram, compileShader
 
+from camera import Camera
+
 
 class Renderer(object):
     def __init__(self, screen):
@@ -16,8 +18,12 @@ class Renderer(object):
         glEnable(GL_DEPTH_TEST)
         glViewport(0,0, self.width, self.height)
 
+        self.camera = Camera(self.width, self.height)
+
         self.time = 0
         self.value = 0
+
+        self.pointLight = glm.vec3(0,0,0)
 
         self.scene = []
         self.active_shaders = None
@@ -43,6 +49,15 @@ class Renderer(object):
             glUseProgram(self.active_shaders)
 
             glUniform1f(glGetUniformLocation(self.active_shaders, "time"), self.time)
+
+            glUniformMatrix4fv( glGetUniformLocation(self.active_shaders, "viewMatrix"),
+                                   1,GL_FALSE, glm.value_ptr( self.camera.GetViewMatrix() ))
+            
+            glUniformMatrix4fv( glGetUniformLocation(self.active_shaders, "projectionMatrix"),
+                                   1,GL_FALSE, glm.value_ptr( self.camera.GetProjectionMatrix() ))
+            
+            glUniform3fv( glGetUniformLocation(self.active_shaders, "pointLight"),1,glm.value_ptr(self.pointLight))
+
 
         for obj in self.scene:
 
