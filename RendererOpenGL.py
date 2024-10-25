@@ -66,6 +66,10 @@ while isRunning:
             elif event.key == pygame.K_7:
                 fShader = negative_shader
                 rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_8:
+                fShader = pixel_shader
+                rend.SetShaders(vShader, fShader)
+
 
 
     if keys[K_LEFT]:

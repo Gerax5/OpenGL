@@ -115,3 +115,29 @@ void main()
 
 
 '''
+
+pixel_shader = '''
+#version 450 core
+
+in vec2 outTexCoords;
+in vec3 outNormals;
+in vec4 outPosition;
+
+uniform sampler2D tex;
+uniform vec3 pointLight;
+
+out vec4 fragColor;
+
+void main()
+{
+    float intensity = dot(outNormals, normalize(pointLight - outPosition.xyz));
+    float pixelSize = 0.03;
+    vec2 pixelatedCoords = vec2(
+        floor(outTexCoords.x / pixelSize) * pixelSize,
+        floor(outTexCoords.y / pixelSize) * pixelSize
+    );
+    fragColor = texture(tex, pixelatedCoords) * intensity;
+}
+
+
+'''
