@@ -13,4 +13,4 @@
 * fragment_hologram: Hace que parezaca holograma el modelo
 
 ## Renderizado
-![Ver video](https://github.com/Gerax5/OpenGL/blob/main/videos/pygame%20window%202024-10-28%2019-33-31.mp4)
+![Ver video](https://github.com/Gerax5/OpenGL/blob/main/videos/gifs/pygame%20window%202024-10-28%2019-33-31.gif)
