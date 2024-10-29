@@ -18,9 +18,10 @@ rend = Renderer(screen)
 
 
 # rend.scene.append(Buffer(triangle))
-faceModel = Model("OBJ/model.obj")
-faceModel.AddTexture("texture/model.bmp")
+faceModel = Model("OBJ/banan.obj")
+faceModel.AddTexture("texture/banan.bmp")
 faceModel.translation.z = -5
+faceModel.translation.y = -1
 faceModel.scale.x = 2
 faceModel.scale.y = 2
 faceModel.scale.z = 2
@@ -51,6 +52,8 @@ while isRunning:
                 rend.FilledMode()
             elif event.key == pygame.K_2:
                 rend.WireframeMode()
+
+            #Vertex shader
             elif event.key == pygame.K_3:
                 vShader = vertex_shader
                 rend.SetShaders(vShader, fShader)
@@ -60,15 +63,43 @@ while isRunning:
             elif event.key == pygame.K_5:
                 vShader = water_shader
                 rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_KP_1:
+                vShader = wave_shader
+                rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_KP_2:
+                vShader = cut_shader
+                rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_KP_3:
+                vShader = anormal_shader
+                rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_KP_4:
+                vShader = ondulation_shader
+                rend.SetShaders(vShader, fShader)
+            
+
+
+            #fragment_Shader
             elif event.key == pygame.K_6:
                 fShader = fragment_shader
                 rend.SetShaders(vShader, fShader)
             elif event.key == pygame.K_7:
                 fShader = negative_shader
                 rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_8:
+            elif event.key == pygame.K_KP_9:
                 fShader = pixel_shader
                 rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_KP_8:
+                fShader = fragment_noise
+                rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_KP_7:
+                fShader = fragment_dissolved_pattern
+                rend.SetShaders(vShader, fShader)
+            elif event.key == pygame.K_KP_6:
+                fShader = fragment_hologram
+                rend.SetShaders(vShader, fShader)
+
+
+                
 
 
 
