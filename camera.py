@@ -31,8 +31,6 @@ class Camera(object):
 
             self.viewMatrix = glm.inverse(camMat)
 
-        self.usingLookAt = False
-
         return self.viewMatrix
     
     def GetProjectionMatrix(self):

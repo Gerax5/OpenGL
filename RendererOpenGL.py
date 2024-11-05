@@ -15,23 +15,24 @@ clock = pygame.time.Clock()
 
 rend = Renderer(screen)
 
-
-skyboxTextureList = ["texture/skybox/clase/right.jpg",
-                     "texture/skybox/clase/left.jpg",
-                     "texture/skybox/clase/top.jpg",
-                     "texture/skybox/clase/bottom.jpg",
-                     "texture/skybox/clase/front.jpg",
-                     "texture/skybox/clase/back.jpg"]
+# C:\Users\Gerax\OneDrive\Desktop\UVGG\3-2\Graficas\Open\OpenGL\texture\skybox\mio\test\back.jpeg
+skyboxTextureList = ["texture/skybox/mio/test/right.jpeg",
+                     "texture/skybox/mio/test/left.jpeg",
+                     "texture/skybox/mio/test/top.jpeg",
+                     "texture/skybox/mio/test/bottom.jpeg",
+                     "texture/skybox/mio/test/front.jpeg",
+                     "texture/skybox/mio/test/back.jpeg"]
 
 rend.CreateSkybox(skyboxTextureList, skybox_vertex_shader, skybox_fragment_shader)
 
 # rend.scene.append(Buffer(triangle))
-# faceModel = Model("OBJ/banan.obj")
-# faceModel.AddTexture("texture/banan.bmp")
-faceModel = Model("OBJ/model.obj")
-faceModel.AddTexture("texture/model.bmp")
+faceModel = Model("OBJ/banan.obj")
+faceModel.AddTexture("texture/banan.bmp")
+# faceModel = Model("OBJ/model.obj")
+# faceModel.AddTexture("texture/model.bmp")
 faceModel.rotation.y = 90
 faceModel.translation.z = -10
+faceModel.translation.y = -0.5
 faceModel.scale.x = 1
 faceModel.scale.y = 1
 faceModel.scale.z = 1
