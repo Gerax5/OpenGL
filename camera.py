@@ -41,9 +41,8 @@ class Camera(object):
 
         self.rotation = glm.degrees( glm.eulerAngles(glm.quat(camMatrix)) )
 
-    def Orbit(self, center, distance, angleX, angleY):
-        self.position.x = center.x + cos(radians(angleY)) * sin(radians(angleX)) * distance
-        self.position.y = center.y + sin(radians(angleY)) * distance
-        self.position.z = center.z + cos(radians(angleY)) * cos(radians(angleX)) * distance
+    def Orbit(self, center, distance, angle):
+        self.position.x = center.x + sin(radians(angle)) * distance
+        self.position.z = center.z + cos(radians(angle)) * distance
 
-
+        

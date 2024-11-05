@@ -151,19 +151,18 @@ while isRunning:
         camDistance = min(camDistance, 9)
 
     if keys[K_r]:
-        camAngleY += 45 * deltaTime
-        camAngleY = min(camAngleY, 10)
+        rend.camera.position.y += 1 * deltaTime
 
     if keys[K_f]:
-        camAngleY -= 45 * deltaTime
-        camAngleY = max(camAngleY, -10)
+        rend.camera.position.y -= 1 * deltaTime
+
 
 
 
     rend.time += deltaTime
 
     rend.camera.LookAt(faceModel.translation)
-    rend.camera.Orbit(faceModel.translation, camDistance, camAngle, camAngleY)
+    rend.camera.Orbit(faceModel.translation, camDistance, camAngle)
 
         
 
