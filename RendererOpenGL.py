@@ -43,7 +43,6 @@ isRunning = True
 
 camDistance = 5
 camAngle = 0
-camAngleY = 0
 
 vShader = vertex_shader
 fShader = fragment_shader
@@ -112,11 +111,6 @@ while isRunning:
                 fShader = fragment_hologram
                 rend.SetShaders(vShader, fShader)
 
-
-                
-
-
-
     if keys[K_LEFT]:
         rend.pointLight.x -= 1
 
@@ -152,17 +146,16 @@ while isRunning:
 
     if keys[K_r]:
         rend.camera.position.y += 1 * deltaTime
+        rend.camera.position.y = min(rend.camera.position.y, 1)
 
     if keys[K_f]:
         rend.camera.position.y -= 1 * deltaTime
-
-
-
+        rend.camera.position.y = max(rend.camera.position.y, -1)
 
     rend.time += deltaTime
 
-    rend.camera.LookAt(faceModel.translation)
     rend.camera.Orbit(faceModel.translation, camDistance, camAngle)
+    rend.camera.LookAt(faceModel.translation)
 
         
 
