@@ -157,11 +157,6 @@ while isRunning:
     rend.camera.Orbit(faceModel.translation, camDistance, camAngle)
     rend.camera.LookAt(faceModel.translation)
 
-        
-
-
-    # print(deltaTime)
-
 
     rend.Render()
 
