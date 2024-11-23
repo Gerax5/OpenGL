@@ -16,12 +16,12 @@ clock = pygame.time.Clock()
 rend = Renderer(screen)
 
 # C:\Users\Gerax\OneDrive\Desktop\UVGG\3-2\Graficas\Open\OpenGL\texture\skybox\mio\test\back.jpeg
-skyboxTextureList = ["texture/skybox/mio/test/right.jpeg",
-                     "texture/skybox/mio/test/left.jpeg",
-                     "texture/skybox/mio/test/top.jpeg",
-                     "texture/skybox/mio/test/bottom.jpeg",
-                     "texture/skybox/mio/test/front.jpeg",
-                     "texture/skybox/mio/test/back.jpeg"]
+skyboxTextureList = ["texture/skybox/mio/Proyecto/right.png",
+                     "texture/skybox/mio/Proyecto/left.png",
+                     "texture/skybox/mio/Proyecto/top.png",
+                     "texture/skybox/mio/Proyecto/bottom.png",
+                     "texture/skybox/mio/Proyecto/front.png",
+                     "texture/skybox/mio/Proyecto/back.png"]
 
 rend.CreateSkybox(skyboxTextureList, skybox_vertex_shader, skybox_fragment_shader)
 
