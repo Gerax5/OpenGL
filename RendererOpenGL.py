@@ -4,8 +4,8 @@ from gl import *
 from shaders import *
 from model import *
 
-width = 960
-height = 540
+width = 1020
+height = 650
 
 pygame.init()
 
@@ -229,7 +229,7 @@ while isRunning:
     if mouseButtons[0]:
         rel = pygame.mouse.get_rel()
         camAngle -= rel[0] * deltaTime * 10
-        rend.camera.position.y -= rel[1] * deltaTime
+        rend.camera.position.y -= rel[1] * deltaTime * 0.5
     if mouseButtons[1]:
         rel = pygame.mouse.get_rel()
         camDistance -= rel[1] * deltaTime * 0.8
