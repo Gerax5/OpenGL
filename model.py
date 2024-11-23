@@ -4,6 +4,7 @@ from buffer import Buffer
 from pygame import image
 from OpenGL.GL import *
 import glm
+from OpenGL.GL.shaders import compileProgram, compileShader
 
 class Model(object):
     def __init__(self, filename):
@@ -23,6 +24,7 @@ class Model(object):
         self.scale = glm.vec3(1,1,1)
 
         self.active_shaders = None
+        self.shader_program = None
 
     def GetModelMatrix(self):
         # M = T * R * S
@@ -91,27 +93,54 @@ class Model(object):
         self.texture = glGenTextures(1)
         
 
-    def Render(self):
-        # Dar la textura
+    def Render(self, camera, time, pointLight):
+        if self.shader_program is not None:
+            glUseProgram(self.shader_program)
 
-        if self.texture is not None:
+            # Establecer uniforms
+            modelMatrixLoc = glGetUniformLocation(self.shader_program, 'modelMatrix')
+            glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, glm.value_ptr(self.GetModelMatrix()))
 
-            glActiveTexture(GL_TEXTURE0)
-            glBindTexture(GL_TEXTURE_2D, self.texture)
+            viewMatrixLoc = glGetUniformLocation(self.shader_program, 'viewMatrix')
+            glUniformMatrix4fv(viewMatrixLoc, 1, GL_FALSE, glm.value_ptr(camera.GetViewMatrix()))
 
-            glTexImage2D(GL_TEXTURE_2D,
-                        0,
-                        GL_RGB,
-                        self.textureSurface.get_width(),
-                        self.textureSurface.get_height(),
-                        0,
-                        GL_RGB,
-                        GL_UNSIGNED_BYTE,
-                        self.textureData)
-            
-            glGenerateMipmap(GL_TEXTURE_2D)
+            projectionMatrixLoc = glGetUniformLocation(self.shader_program, 'projectionMatrix')
+            glUniformMatrix4fv(projectionMatrixLoc, 1, GL_FALSE, glm.value_ptr(camera.GetProjectionMatrix()))
 
-        self.buffer.Render()
+            timeLoc = glGetUniformLocation(self.shader_program, 'time')
+            if timeLoc != -1:
+                glUniform1f(timeLoc, time)
+
+            pointLightLoc = glGetUniformLocation(self.shader_program, 'pointLight')
+            if pointLightLoc != -1:
+                glUniform3fv(pointLightLoc, 1, glm.value_ptr(pointLight))
+
+            # Si tienes texturas
+            if self.texture is not None:
+                glActiveTexture(GL_TEXTURE0)
+                glBindTexture(GL_TEXTURE_2D, self.texture)
+                glTexImage2D(
+                    GL_TEXTURE_2D,
+                    0,
+                    GL_RGB,
+                    self.textureSurface.get_width(),
+                    self.textureSurface.get_height(),
+                    0,
+                    GL_RGB,
+                    GL_UNSIGNED_BYTE,
+                    self.textureData
+                )
+                glGenerateMipmap(GL_TEXTURE_2D)
+
+            # Renderizar el buffer
+            self.buffer.Render()
+
+    def SetShaders(self, vShader, fShader):
+        self.shader_program = compileProgram(
+            compileShader(vShader, GL_VERTEX_SHADER),
+            compileShader(fShader, GL_FRAGMENT_SHADER)
+        )
+
 
     
 

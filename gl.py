@@ -49,29 +49,12 @@ class Renderer(object):
             self.active_shaders = None
 
     def Render(self):
-        glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
         if self.skybox is not None:
             self.skybox.Render(self.camera.GetViewMatrix(), self.camera.GetProjectionMatrix())
 
-        if self.active_shaders is not None:
-            glUseProgram(self.active_shaders)
-
-            glUniform1f(glGetUniformLocation(self.active_shaders, "time"), self.time)
-
-            glUniformMatrix4fv( glGetUniformLocation(self.active_shaders, "viewMatrix"),
-                                   1,GL_FALSE, glm.value_ptr( self.camera.GetViewMatrix() ))
-            
-            glUniformMatrix4fv( glGetUniformLocation(self.active_shaders, "projectionMatrix"),
-                                   1,GL_FALSE, glm.value_ptr( self.camera.GetProjectionMatrix() ))
-            
-            glUniform3fv( glGetUniformLocation(self.active_shaders, "pointLight"),1,glm.value_ptr(self.pointLight))
-
+        # Ya no usamos self.active_shaders aquí
 
         for obj in self.scene:
-
-            if self.active_shaders is not None:
-                glUniformMatrix4fv( glGetUniformLocation(self.active_shaders, "modelMatrix"),
-                                   1,GL_FALSE, glm.value_ptr( obj.GetModelMatrix()))
-
-            obj.Render()
+            obj.Render(self.camera, self.time, self.pointLight)
