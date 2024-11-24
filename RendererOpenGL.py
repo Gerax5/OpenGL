@@ -8,12 +8,17 @@ width = 1020
 height = 650
 
 pygame.init()
+pygame.mixer.init()
 
 
 screen = pygame.display.set_mode((width, height), pygame.OPENGL | pygame.DOUBLEBUF)
 clock = pygame.time.Clock()
 
 rend = Renderer(screen)
+
+pygame.mixer.music.load("audio/fondo.mp3")
+pygame.mixer.music.play(-1)
+pygame.mixer.music.set_volume(0.4)
 
 # C:\Users\Gerax\OneDrive\Desktop\UVGG\3-2\Graficas\Open\OpenGL\texture\skybox\mio\test\back.jpeg
 skyboxTextureList = ["texture/skybox/mio/Proyecto/right.png",
@@ -101,15 +106,18 @@ rend.scene.append(pengu)
 
 isRunning = True
 
-camDistance = 5
+camDistance = 7
 camAngle = 0
-
-vShader = vertex_shader
-fShader = fragment_shader
-# rend.SetShaders(vShader, fShader)
 
 currentShow = 0
 models = [Banana.translation, shrek.translation, Planet.translation, Eugene.translation, pengu.translation ]
+sounds = {
+    0: pygame.mixer.Sound("audio/gnome.mp3"),
+    1: pygame.mixer.Sound("audio/s.mp3"),
+    2: pygame.mixer.Sound("audio/wow.mp3"),
+    3: pygame.mixer.Sound("audio/fast.mp3"),
+    4: pygame.mixer.Sound("audio/bonitos.mp3"),
+}
 
 currentLookAT = models[currentShow]
 
@@ -132,55 +140,14 @@ while isRunning:
             elif event.key == pygame.K_2:
                 rend.WireframeMode()
 
-            #Vertex shader
-            elif event.key == pygame.K_3:
-                vShader = vertex_shader
-                rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_4:
-                vShader = fat_shader
-                rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_5:
-                vShader = water_shader
-                rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_KP_1:
-                vShader = wave_shader
-                rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_KP_2:
-                vShader = cut_shader
-                rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_KP_3:
-                vShader = anormal_shader
-                rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_KP_4:
-                vShader = ondulation_shader
-                rend.SetShaders(vShader, fShader)
-            
-
-
-            #fragment_Shader
-            elif event.key == pygame.K_6:
-                fShader = fragment_shader
-                rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_7:
-                fShader = negative_shader
-                rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_KP_9:
-                fShader = pixel_shader
-                rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_KP_8:
-                fShader = fragment_noise
-                rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_KP_7:
-                fShader = fragment_dissolved_pattern
-                rend.SetShaders(vShader, fShader)
-            elif event.key == pygame.K_KP_6:
-                fShader = fragment_hologram
-                rend.SetShaders(vShader, fShader)
-
 
             elif event.key == pygame.K_SPACE:
                 currentShow += 1
                 currentShow = currentShow % len(models)
+
+                if currentShow in sounds:
+                    sounds[currentShow].play()
+
                 currentLookAT = models[currentShow]
 
     if keys[K_LEFT]:
@@ -230,6 +197,9 @@ while isRunning:
         rel = pygame.mouse.get_rel()
         camAngle -= rel[0] * deltaTime * 10
         rend.camera.position.y -= rel[1] * deltaTime * 0.5
+        rend.camera.position.y = max(rend.camera.position.y, -1)
+        rend.camera.position.y = min(rend.camera.position.y, 1)
+
     if mouseButtons[1]:
         rel = pygame.mouse.get_rel()
         camDistance -= rel[1] * deltaTime * 0.8
