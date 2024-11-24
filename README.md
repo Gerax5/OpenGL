@@ -1,8 +1,8 @@
 # Proyecto Final
 * Gerardo Pineda 22880
 # Video de muestra
-<div align="center">
-  <video src="https://github.com/Gerax5/OpenGL/blob/Proyecto/videos/video1042113675.mp4" controls width="600"></video>
+<div style={{ textAlign: "center" }}>
+  <video src="/videos/video1042113675.mp4" controls style={{width: "100%"}}></video>
 </div>
 
 # Controles
