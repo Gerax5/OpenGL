@@ -139,6 +139,8 @@ while isRunning:
                 rend.FilledMode()
             elif event.key == pygame.K_2:
                 rend.WireframeMode()
+            elif event.key == pygame.K_3:
+                rend.PointMode()
 
 
             elif event.key == pygame.K_SPACE:

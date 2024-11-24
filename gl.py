@@ -40,6 +40,8 @@ class Renderer(object):
     def WireframeMode(self):
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)
 
+    def PointMode(self):
+        glPolygonMode(GL_FRONT_AND_BACK, GL_POINT)
 
     def SetShaders(self, vShader, fShader):
         if vShader is not None and fShader is not None:
