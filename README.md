@@ -38,5 +38,5 @@
 | **Banana**            | OBJ/banan.obj          | anormal_shader    | fragment_dissolved_pattern |
 | **Shrek**             | OBJ/Shrek.obj          | ondulation_shader | fragment_hologram          |
 | **Planet**            | OBJ/sp.obj             | wave_shader       | fragment_hologram          |
-| **Eugene**            | OBJ/Eugene.obj         | cut_shader        | pixel_shader               |
+| **Erizo**            | OBJ/Eugene.obj         | cut_shader        | pixel_shader               |
 | **Pengu**             | OBJ/Penguin.obj        | ondulation_shader | fragment_noise             |
