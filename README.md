@@ -2,11 +2,7 @@
 
 - Gerardo Pineda 22880
 
-# Video de muestra
-
-<div style={{ textAlign: "center" }}>
-  <video src="/videos/video1042113675.mp4" playsInline autoPlay muted loop style={{width: "100%"}}/>
-</div>
+# [Video de muestra](https://github.com/Gerax5/OpenGL/blob/Proyecto/videos/video1042113675.mp4)
 
 # Controles
 
