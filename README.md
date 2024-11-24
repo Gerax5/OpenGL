@@ -2,20 +2,18 @@
 
 - Gerardo Pineda 22880
 
-# Video de muestra
-
-<div style={{ textAlign: "center" }}>
-  <video src="/videos/video1042113675.mp4" playsInline autoPlay muted loop style={{width: "100%"}}/>
-</div>
+# [Video de muestra](https://github.com/Gerax5/OpenGL/blob/Proyecto/videos/video1042113675.mp4)
 
 # Controles
 
 | **Dispositivo** | **Tecla/Acción**        | **Función**                                                              |
 | --------------- | ----------------------- | ------------------------------------------------------------------------ |
-| **Teclado**     | **W**                   | Subir en el eje Y de la cámara                                           |
-|                 | **S**                   | Bajar en el eje Y de la cámara                                           |
+| **Teclado**     | **W**                   | Acercar la camara al modelo                                          |
+|                 | **S**                   | Alejar el modelo                                           |
 |                 | **A**                   | Girar a la izquierda en órbita                                           |
 |                 | **D**                   | Girar a la derecha en órbita                                             |
+| |**R** | Subir en y la camara  |
+| |**F** | Bajar en y la camara |
 |                 | **Espacio o Space bar** | Cambiar de modelo                                                        |
 | **Mouse**       | **Click izquierdo**     | Mirar hacia arriba, abajo y a los lados (mantener clic)                  |
 |                 | **Scroll bar**          | Acercar o alejar ( no estoy seguro porque no tengo mouse para probar 🫠 ) |
@@ -40,5 +38,5 @@
 | **Banana**            | OBJ/banan.obj          | anormal_shader    | fragment_dissolved_pattern |
 | **Shrek**             | OBJ/Shrek.obj          | ondulation_shader | fragment_hologram          |
 | **Planet**            | OBJ/sp.obj             | wave_shader       | fragment_hologram          |
-| **Eugene**            | OBJ/Eugene.obj         | cut_shader        | pixel_shader               |
+| **Erizo**            | OBJ/Eugene.obj         | cut_shader        | pixel_shader               |
 | **Pengu**             | OBJ/Penguin.obj        | ondulation_shader | fragment_noise             |
