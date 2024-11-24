@@ -40,3 +40,7 @@
 | **Planet**            | OBJ/sp.obj             | wave_shader       | fragment_hologram          |
 | **Erizo**            | OBJ/Eugene.obj         | cut_shader        | pixel_shader               |
 | **Pengu**             | OBJ/Penguin.obj        | ondulation_shader | fragment_noise             |
+
+# Preguntas a chat
+Yo a chat le pregunte como podia hacer para que el modelo guardara su propio shader y este me ayudo para modificar el metodo render del archivo model
+![Imagen de chatio](https://github.com/Gerax5/OpenGL/blob/Proyecto/videos/chatio.png)
